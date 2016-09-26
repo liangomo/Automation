@@ -18,8 +18,11 @@ public class CreacionUsuarios {
 		/** CONEXIÓN BD */
 		/* Consulta de la información de la tabla Doctores */
 		ResultSet rs = Help.Consulta("SELECT * FROM PSL.Doctores");
-		System.out.println(rs.getString("Nombre"));
 		rs.next();
+		
+		/* Consulta de la información de la tabla Pacientes */
+		ResultSet pac = Help.Consulta("SELECT * FROM PSL.Pacientes");
+		pac.next();
 
 		/** INICIO */
 		WebDriver driver = new FirefoxDriver();
@@ -30,37 +33,37 @@ public class CreacionUsuarios {
 
 		/** CREAR DOCTORES */
 
-		// Agregar Doctor
+		/* Agregar Doctor */
 		driver.findElement(By.linkText("Agregar Doctor")).click();
 
-		//Nombre Completo
+		/* Nombre Completo */
 		WebElement nombreCompleto = driver.findElement(By.id("name"));
 		//nombreCompleto.sendKeys(rs.getString("Nombre"));
 		nombreCompleto.sendKeys("Rafael");
 
-		//Apellidos
+		/* Apellidos */
 		WebElement apellidos = driver.findElement(By.id("last_name"));
 		//apellidos.sendKeys(rs.getString("Apellido"));
 		apellidos.sendKeys("Gutierrez Gutierrez");
 
-		//telefono
+		/* Telefono */
 		WebElement telefono = driver.findElement(By.id("telephone"));
 		telefono.sendKeys("3552627");
 
-		//TipoID
+		/* TipoID */
 		WebElement tipoID = driver.findElement(By.id("identification_type"));
 		//tipoID.sendKeys(rs.getString("TipoID"));
 		tipoID.sendKeys("Cédula de ciudadanía");
 
-		//NumeroID
+		/* NumeroID */
 		WebElement numeroID = driver.findElement(By.id("identification"));
 		//numeroID.sendKeys(rs.getString("NumeroID"));
 		numeroID.sendKeys("1020455340");
 
-		// Botón GUARDAR
+		/* Botón GUARDAR */
 		driver.findElement(By.linkText("Guardar")).click();
 
-		//Validación
+		/* Validación */
 		WebElement validacionDoctor = driver.findElement(By.xpath("//div[contains(.,'Guardado')]"));
 		Assert.assertTrue(validacionDoctor.getText().contains("Guardado"));
 
@@ -70,44 +73,44 @@ public class CreacionUsuarios {
 
 		/** CREAR PACIENTES */
 
-		// Agregar Paciente
+		/* Agregar Paciente */
 		driver.findElement(By.linkText("Agregar Paciente")).click();
 
-		//Nombre Completo
+		/* Nombre Completo */
 		WebElement nombreCompletoP = driver.findElement(By.name("name"));
-		//nombreCompletoP.sendKeys(rs.getString("Nombre"));
+		//nombreCompletoP.sendKeys(pac.getString("Nombre"));
 		nombreCompletoP.sendKeys("Luisa");
 
-		//Apellidos
+		/* Apellidos */
 		WebElement apellidosP = driver.findElement(By.name("last_name"));
-		//apellidosP.sendKeys(rs.getString("Apellido"));
+		//apellidosP.sendKeys(pac.getString("Apellido"));
 		apellidosP.sendKeys("Gutierrez Gutierrez");
 
-		//telefono
+		/* Telefono */
 		WebElement telefonoP = driver.findElement(By.name("telephone"));
 		telefonoP.sendKeys("3552627");
 
-		//TipoID
+		/* TipoID */
 		WebElement tipoIDP = driver.findElement(By.name("identification_type"));
-		//tipoIDP.sendKeys(rs.getString("TipoID"));
+		//tipoIDP.sendKeys(pac.getString("TipoID"));
 		tipoIDP.sendKeys("Cédula de ciudadanía");
 
-		//NumeroID
+		/* NumeroID */
 		WebElement numeroIDP = driver.findElement(By.name("identification"));
-		//numeroIDP.sendKeys(rs.getString("NumeroID"));
+		//numeroIDP.sendKeys(pac.getString("NumeroID"));
 		numeroIDP.sendKeys("1030477777");
 		
-		// Check Salud Prepagada
+		/* Check Salud Prepagada */
 		driver.findElement(By.linkText("Salud prepagada")).click();
 		
-		// Botón GUARDAR
+		/* Botón GUARDAR */
 		driver.findElement(By.linkText("Guardar")).click();
 
-		//Validación
+		/* Validación */
 		WebElement validacionPac = driver.findElement(By.xpath("//div[contains(.,'Guardado')]"));
 		Assert.assertTrue(validacionPac.getText().contains("Guardado"));
 		
-		// Cerrar Navegador
+		/* Cerrar Navegador */
 		driver.close();
 	}
 }

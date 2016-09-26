@@ -1,7 +1,10 @@
 package Controlador;
 
 import java.sql.SQLException;
+
 import org.testng.annotations.Test;
+
+import Vista.AgendarCita;
 import Vista.CreacionUsuarios;
 
 public class MAIN {
@@ -11,6 +14,9 @@ public class MAIN {
 
 		// Creación Doctores y Pacientes
 		CreacionUsuarios.usuarios();
+		
+		// Agendar Citas
+		AgendarCita.citas();
 		
 	}
 }
