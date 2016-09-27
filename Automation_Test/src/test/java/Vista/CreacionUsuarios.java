@@ -30,16 +30,16 @@ public class CreacionUsuarios {
 //
 //		if (rs.getString("Navegador").equals("Explorer"))
 //		{
-			WebDriver driver = new InternetExplorerDriver();
-			driver.manage().window().maximize();
-			driver.navigate().to("http://automatizacion.herokuapp.com/lgomezm/");
-//		} else {
-//			
-//			/** INICIO */
-//			WebDriver driver = new FirefoxDriver();
-//			String test = "http://automatizacion.herokuapp.com/lgomezm/";
-//			driver.get(test);
+//			WebDriver driver = new InternetExplorerDriver();
 //			driver.manage().window().maximize();
+//			driver.navigate().to("http://automatizacion.herokuapp.com/lgomezm/");
+//		} else {
+			
+			/** INICIO */
+			WebDriver driver = new FirefoxDriver();
+			String test = "http://automatizacion.herokuapp.com/lgomezm/";
+			driver.get(test);
+			driver.manage().window().maximize();
 
 
 
