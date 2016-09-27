@@ -2,16 +2,29 @@
 <testng-results skipped="0" failed="1" total="1" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="180128" started-at="2016-09-26T02:01:30Z" finished-at="2016-09-26T02:04:30Z">
+  <suite name="Default suite" duration-ms="82" started-at="2016-09-27T01:25:39Z" finished-at="2016-09-27T01:25:39Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="180128" started-at="2016-09-26T02:01:30Z" finished-at="2016-09-26T02:04:30Z">
-      <class name="Vista.CreacionUsuarios">
-        <test-method status="FAIL" signature="usuarios()[pri:0, instance:Vista.CreacionUsuarios@ce0284]" name="usuarios" duration-ms="180112" started-at="2016-09-25T21:01:30Z" finished-at="2016-09-25T21:04:30Z">
-          <exception class="java.lang.NullPointerException">
+    <test name="Default test" duration-ms="82" started-at="2016-09-27T01:25:39Z" finished-at="2016-09-27T01:25:39Z">
+      <class name="Controlador.MAIN">
+        <test-method status="FAIL" signature="main()[pri:0, instance:Controlador.MAIN@737611]" name="main" duration-ms="66" started-at="2016-09-26T20:25:39Z" finished-at="2016-09-26T20:25:39Z">
+          <exception class="java.lang.IllegalStateException">
+            <message>
+              <![CDATA[The driver executable does not exist: D:\WORKSPACE\Repository\Automation_Test\IE driver pathIEDriverServer.exe]]>
+            </message>
             <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException
-	at Vista.CreacionUsuarios.usuarios(CreacionUsuarios.java:21)
+              <![CDATA[java.lang.IllegalStateException: The driver executable does not exist: D:\WORKSPACE\Repository\Automation_Test\IE driver pathIEDriverServer.exe
+	at com.google.common.base.Preconditions.checkState(Preconditions.java:199)
+	at org.openqa.selenium.remote.service.DriverService.checkExecutable(DriverService.java:121)
+	at org.openqa.selenium.remote.service.DriverService.findExecutable(DriverService.java:116)
+	at org.openqa.selenium.ie.InternetExplorerDriverService.access$000(InternetExplorerDriverService.java:32)
+	at org.openqa.selenium.ie.InternetExplorerDriverService$Builder.findDefaultExecutable(InternetExplorerDriverService.java:167)
+	at org.openqa.selenium.remote.service.DriverService$Builder.build(DriverService.java:296)
+	at org.openqa.selenium.ie.InternetExplorerDriver.setupService(InternetExplorerDriver.java:251)
+	at org.openqa.selenium.ie.InternetExplorerDriver.<init>(InternetExplorerDriver.java:172)
+	at org.openqa.selenium.ie.InternetExplorerDriver.<init>(InternetExplorerDriver.java:146)
+	at Vista.Ejecucion_IE_BeforeClass.setUp(Ejecucion_IE_BeforeClass.java:28)
+	at Controlador.MAIN.main(MAIN.java:18)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -39,11 +52,11 @@
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:57)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+          </exception> <!-- java.lang.IllegalStateException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- usuarios -->
-      </class> <!-- Vista.CreacionUsuarios -->
+        </test-method> <!-- main -->
+      </class> <!-- Controlador.MAIN -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

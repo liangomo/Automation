@@ -3,11 +3,11 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Vista.CreacionUsuarios">
+      <class name="Controlador.MAIN">
         <methods>
-          <include name="usuarios"/>
+          <include name="main"/>
         </methods>
-      </class> <!-- Vista.CreacionUsuarios -->
+      </class> <!-- Controlador.MAIN -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
