@@ -19,22 +19,22 @@ public class CreacionUsuarios {
 		/** CONEXIÓN BD */
 
 		/* Consulta de la información de la tabla Doctores */
-//		ResultSet rs = Help.Consulta("SELECT * FROM PSL.Doctores");
-		//	rs.next();
+		ResultSet rs = Help.Consulta("SELECT * FROM PSL.Doctores");
+		rs.next();
 
 		/* Consulta de la información de la tabla Pacientes */
-	//	ResultSet pac = Help.Consulta("SELECT * FROM PSL.Pacientes");
-		//	pac.next();
+		ResultSet pac = Help.Consulta("SELECT * FROM PSL.Pacientes");
+		pac.next();
 
-		//String driverPath = "IE driver path";
-//
-//		if (rs.getString("Navegador").equals("Explorer"))
-//		{
-//			WebDriver driver = new InternetExplorerDriver();
-//			driver.manage().window().maximize();
-//			driver.navigate().to("http://automatizacion.herokuapp.com/lgomezm/");
-//		} else {
-			
+		/* Ejecución de acuerdo al navegador */
+		if (rs.getString("Navegador").equals("Explorer"))
+		{
+			WebDriver driver = new InternetExplorerDriver();
+			driver.manage().window().maximize();
+			driver.navigate().to("http://automatizacion.herokuapp.com/lgomezm/");
+		
+		} else {
+
 			/** INICIO */
 			WebDriver driver = new FirefoxDriver();
 			String test = "http://automatizacion.herokuapp.com/lgomezm/";
@@ -125,5 +125,5 @@ public class CreacionUsuarios {
 			/* Cerrar Navegador */
 			driver.close();
 		}
-//	}
+	}
 }
