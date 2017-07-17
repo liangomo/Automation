@@ -1,0 +1,256 @@
+try {
+			String userjs = null;
+			String passjs = null;
+			
+			args= new Object[10];
+			
+			args[0] = "Grupo de Parametrizacion";
+			args[9] = true;
+			
+			JLabel labelCombo = new JLabel("Servidor:");
+
+			String[] item = new String[]{"BOP0071", "BOP0072", "BOP0077"};
+			@SuppressWarnings("rawtypes")
+			JComboBox comboServidor = new JComboBox(item);
+			
+			JLabel labelLogin = new JLabel("Usuario Grupo Parametrizador:");
+			JTextField login = new JTextField();
+			 
+			JLabel labelPassword = new JLabel("Password Grupo Parametrizador:");
+			JPasswordField password = new JPasswordField();
+			
+			JLabel labelLoginJefe = new JLabel("Usuario Administrador de Usuario:");
+			JTextField loginJefe = new JTextField();
+			 
+			JLabel labelPasswordJefe = new JLabel("Password Administrador de Usuario");
+			JPasswordField passwordJefe = new JPasswordField();
+			 
+			JLabel labelVersion = new JLabel("Versión Software:");
+			JTextField version = new JTextField();
+			
+			Object[] array = { labelCombo, comboServidor, labelLogin, login, labelPassword, password, labelLoginJefe, loginJefe, labelPasswordJefe, passwordJefe, labelVersion, version};
+			 
+			int res = JOptionPane.showConfirmDialog(null, array, "Configuración Parámetros", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+			 
+			if (res == JOptionPane.OK_OPTION) {
+				args[1] = comboServidor.getSelectedItem();
+			    args[2] = login.getText().trim();
+			    args[3] = new String(password.getPassword());
+			    args[4] = version.getText().trim();
+			    userjs = loginJefe.getText().trim();
+			    passjs = new String(passwordJefe.getPassword());
+			    
+			    doc = createPdf(args);
+				table = createTable(doc);
+				
+				args[5] = doc;
+				args[7] = table;
+				
+				callScript("ScriptsGenerales.SC_Login", args);
+
+				callScript("ScriptsBotones.BtnServiciosOperativos", args);
+				callScript("MenuServicioOperativo.LnkCambioRol", args);
+				callScript("CambioRol", args);
+
+				createCellTitle("MODIFICACION ETIQUETAS DE LA VERSIÓN DE PRODUCCIÓN", Element.ALIGN_CENTER, doc, table);
+
+				callScript("ScriptsBotones.BtnServiciosOperativos", args);
+				callScript("MenuServicioOperativo.LnkParametrizacionServicios", args);
+				callScript("MenuParametrizacion.MnServiciosOperativosDCA", args);
+				callScript("DefinicionCamposAdicionales", args); sleep(5);
+				
+				doc.add(table);
+				doc.newPage();
+				table = createTable(doc);
+				args[7] = table;
+				
+				createCellTitle("TERMINALES DE PRODUCCIÓN IDM", Element.ALIGN_CENTER, doc, table);
+				
+				callScript("ScriptsBotones.BtnServiciosOperativos", args);
+				callScript("MenuServicioOperativo.LnkParametrosInstGenericos", args);
+				callScript("ParametrosGenerales", args);
+
+				doc.add(table);
+				doc.newPage();
+				table = createTable(doc);
+				args[7] = table;
+				
+				createCellTitle("RESPALDO LOG HISTORICO", Element.ALIGN_CENTER, doc, table);
+				
+				callScript("MenuServicioOperativo.LnkRespaldoHistSeguridad", args);
+				callScript("RespaldoEInicializacionHistSeg", args);
+
+				doc.add(table);
+				doc.newPage();
+				table = createTable(doc);
+				args[7] = table;
+				
+				createCellTitle("RESPALDO LOG DE SEGURIDAD", Element.ALIGN_CENTER, doc, table);
+				
+				callScript("MenuServicioOperativo.LnkRespaldoHistoricoServicios", args);
+				callScript("RespaldoEInicializacionHistServ", args);
+
+				doc.add(table);
+				doc.newPage();
+				table = createTable(doc);
+				args[7] = table;
+				
+				createCellTitle("CAMBIO MANUAL DEL SERVICIO", Element.ALIGN_CENTER, doc, table);
+				
+				callScript("MenuServicioOperativo.LnkParametrizacionServicios", args);
+				callScript("MenuParametrizacion.MnServFinEspEventos", args);
+				callScript("MttoEventosyAcciones", args);
+
+				doc.add(table);
+				doc.newPage();
+				table = createTable(doc);
+				args[7] = table;
+				
+				createCellTitle("VERIFICACION DLL'S", Element.ALIGN_CENTER, doc, table);
+				
+				callScript("MenuParametrizacion.MnMensajeTramaWS", args);
+				callScript("VerificarDLL", args);
+
+				callScript("ScriptsBotones.BtnServiciosOperativos", args);
+
+				doc.add(table);
+				doc.newPage();
+				table = createTable(doc);
+				args[7] = table;
+				
+				createCellTitle("CONSULTA DE USUARIOS", Element.ALIGN_CENTER, doc, table);
+				
+				callScript("MenuServicioOperativo.LnkConsultaDeUsuarios", args);
+				String[] usuario = (String[]) callScript("ConsultaUsuario", args);
+
+				callScript("MenuServicioOperativo.LnkCambioRol", args);
+
+				args[0] = "Jefe de Servicios SB";
+				
+				callScript("CambioRol", args);
+				
+				callScript("ScriptsGenerales.SC_Logout", args);
+				
+				args[6] = usuario;
+				
+				String userpar = (String) args[2];
+				String passpar = (String) args[3];
+
+				args[2] = userjs;	
+				args[3] = passjs;
+				
+				callScript("ScriptsGenerales.SC_Login", args);
+				callScript("ScriptsBotones.BtnServiciosOperativos", args);
+//				callScript("ScriptsGenerales.SC_Login", args);
+//				callScript("ScriptsBotones.BtnServiciosOperativos", args);
+				callScript("MenuServicioOperativo.LnkParametrizacionServicios", args);
+				callScript("MenuParametrizacion.MnUsuarios", args);
+				
+				args[0] = "Grupo de Parametrizacion";
+				
+				callScript("AdministracionUsuarios", args);
+				
+				callScript("ScriptsBotones.BtnServiciosOperativos", args);
+				callScript("MenuServicioOperativo.LnkParametrizacionServicios", args);
+				callScript("MenuParametrizacion.MnUsuarios", args);
+				
+				callScript("MenuServicioOperativo.LnkRoles");
+				
+				callScript("EliminarRol", args);
+				
+				args[0] = "Administrador de Usuarios";
+				
+				callScript("ScriptsBotones.BtnServiciosOperativos", args);
+////				callScript("MenuServicioOperativo.LnkParametrizacionServicios", args);
+//				
+//				args[0] = "Jefe de Servicios SB";
+//				callScript("MenuServicioOperativo.LnkCambioRol", args);
+//				callScript("CambioRol", args);
+				
+				callScript("MenuServicioOperativo.LnkConsultaDeUsuarios", args);
+				usuario = (String[]) callScript("ConsultaUsuario", args);
+				args[6] = usuario;
+				callScript("ScriptsGenerales.SC_Logout", args);
+				
+				args[2] = userpar;	
+				args[3] = passpar;
+
+				callScript("ScriptsGenerales.SC_Login", args);
+				
+				callScript("ScriptsBotones.BtnServiciosOperativos", args);
+				
+				callScript("MenuServicioOperativo.LnkCambioRol", args);
+
+				args[0] = "Jefe de Servicios SB";
+				
+				callScript("CambioRol", args);
+				
+				callScript("MenuServicioOperativo.LnkConsultaDeUsuarios", args);
+				
+				args[0] = "Administrador de Usuarios";
+				
+				usuario = (String[]) callScript("ConsultaUsuario", args);
+				args[6] = usuario;
+				callScript("ScriptsBotones.BtnServiciosOperativos", args);
+				callScript("MenuServicioOperativo.LnkParametrizacionServicios", args);
+				
+				callScript("AdministracionUsuarios", args);
+				
+				callScript("ScriptsBotones.BtnServiciosOperativos", args);
+				callScript("MenuServicioOperativo.LnkParametrizacionServicios", args);
+				callScript("MenuServicioOperativo.LnkRoles");
+				callScript("EliminarRol", args);
+				callScript("ScriptsGenerales.SC_Logout", args);
+				
+//				
+//				callScript("MenuServicioOperativo.LnkParametrizacionServicios", args);
+//				callScript("MenuServicioOperativo.LnkRoles");
+//
+//				args[0] = "Grupo de Parametrizacion";
+//				
+//				doc.add(table);
+//				doc.newPage();
+//				table = createTable(doc);
+//				
+//				createCellTitle("ELIMINACIÓN DE ROL GRUPO PARAMETRIZACION", Element.ALIGN_CENTER, doc, table);
+//				callScript("EliminarRol", args);
+//				
+//				args[6] = usuario;
+//
+//				userpar = (String) args[2];
+//				passpar = (String) args[3];
+//
+//				args[2] = userjs;	
+//				args[3] = passjs;
+//
+//				callScript("ScriptsGenerales.SC_Login", args);
+//				callScript("ScriptsBotones.BtnServiciosOperativos", args);
+//				callScript("MenuServicioOperativo.LnkParametrizacionServicios", args);
+//				callScript("MenuParametrizacion.MnUsuarios", args);
+//				callScript("AdministracionUsuarios", args);
+//				callScript("ScriptsGenerales.SC_Logout", args);
+//
+//				args[2] = userpar;
+//				args[3] = passpar;
+//
+//				callScript("ScriptsGenerales.SC_Login", args);
+//				callScript("ScriptsBotones.BtnServiciosOperativos", args);
+//				callScript("MenuServicioOperativo.LnkParametrizacionServicios", args);
+//				callScript("MenuServicioOperativo.LnkRoles", args);
+//
+//				args[0] = "Administrador de Usuarios";
+//				
+//				doc.add(table);
+//				doc.newPage();
+//				table = createTable(doc);
+//				
+//				createCellTitle("ELIMINACIÓN DE ROL GRUPO ADMINISTRACIDOR DE USUARIOS", Element.ALIGN_CENTER, doc, table);
+//				callScript("EliminarRol", args);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(doc != null)
+				closePDF(doc, table);
+		}
+	}
